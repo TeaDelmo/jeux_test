@@ -22,3 +22,4 @@ class Game:
     def spawn_monster(self):
          monster = Monster(self)
          self.all_monsters.add(monster)
+         
