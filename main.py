@@ -24,10 +24,20 @@ while running:
     #appliquer le joueur
     screen.blit(game.player.image, game.player.rect)
 
+    #acctualiser la barre de vie du joueur
+    game.player.update_health_bar(screen )
+
+
     #recuperer les projectiles si joueur
     for projectil in game.player.all_projectiles:
-        dx = game.monster.rect.x - projectil.rect.x
-        dy = game.monster.rect.y - projectil.rect.y
+        if game.monster.rect.y < game.player.rect.y:
+            dx = game.monster.rect.x - projectil.rect.x
+            dy = game.monster.rect.y - projectil.rect.y - 20
+
+        if game.monster.rect.y >= game.player.rect.y:
+            dx = game.monster.rect.x - projectil.rect.x
+            dy = game.monster.rect.y - projectil.rect.y
+
         xy = math.sqrt(math.pow(dx,2) + math.pow(dy,2))
         dx = dx/xy
         dy = dy/xy
@@ -36,11 +46,12 @@ while running:
     #recupérer les monstres de notre jeux
     for monster in game.all_monsters:
         dx = game.player.rect.x - monster.rect.x
-        dy = game.player.rect.y - monster.rect.y 
+        dy = game.player.rect.y - monster.rect.y + 40
         xy = math.sqrt(math.pow(dx,2) + math.pow(dy,2))
         dx = dx/xy
         dy = dy/xy
         monster.forward(dx,dy)
+        monster.update_health_bar(screen)
  #     monster.forward()
  #     print("diretion monstre ("+str(dx)+","+str(dy)+")")
 
