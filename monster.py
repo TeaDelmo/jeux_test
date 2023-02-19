@@ -15,7 +15,7 @@ class Monster(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 1000 + random.randint(0, 300)
         self.rect.y = 550 
-        self.velocity = random.randint(1, 2)
+        self.velocity = random.randint(1, 5)
 
     def damage(self, amount):
         #infliger les degats
@@ -25,7 +25,7 @@ class Monster(pygame.sprite.Sprite):
         if self.health <= 0:
             #reapparaitre comme un nouveau monstre
             self.rect.x = 1000 + random.randint(0, 300)
-            self.velocity = random.randint(1, 2)
+            self.velocity = random.randint(1,5)
             self.health = self.max_health
 
     def update_health_bar(self, surface):

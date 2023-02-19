@@ -21,8 +21,10 @@ class Player(pygame.sprite.Sprite):
 
     def damage(self, amount):
         if self.health - amount > amount:
-        #infliger les degats
             self.health -= amount
+        else:
+            #si le joeur n'a plus de vie
+            self.game.game_over()
 
     def update_health_bar(self, surface):
         #dessiner la barre de vie
